@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://cdn.wallpapersafari.com/80/65/kNA35n.jpg");  
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }  
+    </style>  
+    <title> Query Form </title>
+    <form action="custom_query1" method="POST">
+        {% csrf_token %}
+        <label>
+            Input Your Query:
+        </label>
+        <td><input type="text" placeholder="Enter your Query" name="custom_query1" size="100" required></td>
+        <td><input type="submit" value="custom_query1"></td>
+    </form>
+</head>
+</html>

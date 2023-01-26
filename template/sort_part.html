@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://cdn.wallpapersafari.com/80/65/kNA35n.jpg");  
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: repeat;
+            background-size: cover;
+            position: relative;
+        }  
+        td {
+            text-align: center;
+        }
+    </style>  
+    <title> Hackathon Management System</title>
+</head>
+
+<body>
+<left>
+    <a href="{% url 'HomePage' %}">
+        <button>HomePage</button>
+    </a>
+</left>
+    
+<left>
+    <a href="{% url 'show_part' %}">
+        <button>Show Participant Database</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'insert_part' %}">
+        <button>Insert Participant</button>
+    </a>
+</left>
+
+    <center>
+        <h1 style="color:white;"> Show Participant Records - Sorted </h1>
+    </hr>
+    <form method="POST" action="sort_part">
+        {% csrf_token %}
+        <label for="Sort"></label>
+            <select id="Sort" name="Sort">
+                <option value="part_id">part_id</option>
+                <option value="first_name">first_name</option>
+                <option value="middle_name">middle_name</option>
+                <option value="last_name">last_name</option>
+                <option value="email">email</option>
+                <option value="mobile_no">mobile_no</option>
+                <option value="address">address</option>
+                <option value="role">role</option>
+                <option value="gender">gender</option>
+                <option value="country">country</option>
+                <option value="disability">disability</option>
+            </select>
+            <input type="submit" value="Sort"/>
+    </form>
+</hr>
+    <a href="{% url 'runQuerypart' %}">
+        <button>Run Query</button>
+    </a>
+    <a href="{% url 'run_query1' %}">
+        <button style="margin:5px;">Run Custom Query</button>
+    </a>
+</hr>
+        <table border="1" bgcolor="lightblue">
+            <tr>
+                <th> Customer ID </th>
+                <th> Customer Name </th>
+                <th> Debit Card ID </th>
+                <th> Age  </th>
+                <th> Height </th>
+                <th> House No </th>
+                <th> Street No </th>
+                <th> Pincode </th> 
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td> {{result.part_id}}</td>
+                <td> {{result.first_name}} </td>
+                <td> {{result.middle_name}} </td>
+                <td> {{result.last_name}} </td>
+                <td> {{result.email}} </td>
+                <td> {{result.mobile_no}} </td>
+                <td> {{result.address}} </td>
+                <td> {{result.role}}</td>
+                <td> {{result.gender}}</td>
+                <td> {{result.country}}</td>
+                <td> {{result.disability}}</td>
+                <td><a href="edit_part/{{result.part_id}}">Edit✍</a></td>
+                <td><a href="del_part/{{result.part_id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

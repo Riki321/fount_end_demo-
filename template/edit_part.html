@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://cdn.wallpapersafari.com/80/65/kNA35n.jpg");  
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }  
+    </style>  
+    <title> Hackathon Management System</title>
+</head>
+
+<body>
+<left>
+    <a href="{% url 'HomePage' %}">
+        <button>HomePage</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'show_part' %}">
+        <button>Show Participant Database</button>
+    </a>
+</left>
+
+<left>
+    <a href="{% url 'insert_part' %}">
+        <button>Insert Participant</button>
+    </a>
+</left>
+
+    <center>
+        <a href="{% url 'runQuerypart' %}">
+            <button>Run Query</button>
+        </a>
+        <a href="{% url 'run_query1' %}">
+            <button style="margin:5px;">Run Custom Query</button>
+        </a>
+        <h1 style="color:white;"> Edit Participant Records </h1>
+    </hr>
+    
+        <form method="POST" action="/update_part/{{part.part_id}}">
+            {% csrf_token%}
+        <table border="1" bgcolor="lightblue">
+            <tr>
+                <td>part_id</td>
+                <td><input type="text" name="part_id" value="{{part.part_id}}" readonly></td>
+            </tr>
+            <tr>
+                <td>first_name</td>
+                <td><input type="text" name="first_name" value="{{part.first_name}}" ></td>
+            </tr>
+            <tr>
+                <td>middle_name</td>
+                <td><input type="text" name="middle_name" value="{{part.middle_name}}" ></td>
+            </tr>
+            <tr>
+                <td>last_name</td>
+                <td><input type="text" name="last_name" value="{{part.last_name}}" ></td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td><input type="text" name="email" value="{{part.email}}" ></td>
+            </tr>
+            <tr>
+                <td>mobile_no</td>
+                <td><input type="text" name="mobile_no" value="{{part.mobile_no}}" ></td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td><input type="text" name="address" value="{{part.address}}" ></td>
+            </tr>
+            <tr>
+                <td>role</td>
+                <td><input type="text" name="role" value="{{part.role}}" ></td>
+            </tr>
+            <tr>
+                <td>gender</td>
+                <td><input type="text" name="gender" value="{{part.gender}}" ></td>
+            </tr>
+            <tr>
+                <td>country</td>
+                <td><input type="text" name="country" value="{{part.country}}" ></td>
+            </tr>
+            <tr>
+                <td>disability</td>
+                <td><input type="text" name="disability" value="{{part.disability}}" ></td>
+            </tr>
+
+            
+            <tr>
+                <td><input type="submit" value="Update Record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

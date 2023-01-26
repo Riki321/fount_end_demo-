@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://cdn.wallpapersafari.com/80/65/kNA35n.jpg");  
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }  
+    </style>  
+    <title> Hackathon Management System</title>
+</head>
+
+<body>
+    <left>
+        <a href="{% url 'HomePage' %}">
+            <button>HomePage</button>
+        </a>
+    </left>
+    
+    <left>
+        <a href="{% url 'show_part' %}">
+            <button>Show Participant Database</button>
+        </a>
+    </left>
+
+    <center>
+        <a href="{% url 'runQuerypart' %}">
+            <button>Run Query</button>
+        </a>
+        <a href="{% url 'run_query1' %}">
+            <button style="margin:5px;">Run Custom Query</button>
+        </a>
+        <h1 style="color:white;"> Insert Participant </h1>
+        <hr/>
+        <form method="POST">
+            {% csrf_token %}
+        <table border="1" bgcolor="lightblue">
+            <tr>
+                <td> part_id</td>
+                <td><input type="text" placeholder="Enter Participant ID" name="part_id"></td>
+            </tr>
+            <tr>
+                <td> first_name </td>
+                <td><input type="text" placeholder="Enter Participant first Name" name="first_name"></td>
+            </tr>
+            <tr>
+                <td> middle_name </td>
+                <td><input type="text" placeholder="Enter Participant middle Name" name="middle_name"></td>
+            </tr>
+            <tr>
+                <td> last_name </td>
+                <td><input type="text" placeholder="Enter Participant last Name" name="last_name"></td>
+            </tr>
+            <tr>
+                <td> email</td>
+                <td>
+                    <input type="text" placeholder="Enter email" name="email"></td>
+                </td>
+            </tr>
+            <tr>
+                <td> mobile_no</td>
+                <td><input type="text" placeholder="Enter mobile number" name="mobile_no"></td>
+            </tr>
+            <tr>
+                <td> address</td>
+                <td><input type="text" placeholder="Enter address" name="address"></td>
+            </tr>
+            <tr>
+                <td> role</td>
+                <td><input type="radio" name="role" value="Student">Student </br>
+                    <input type="radio" name="role" value="Graduate">Graduate </br>
+                    <input type="radio" name="role" value="professional">professional </br>
+                    <input type="radio" name="role" value="Engineer">Engineer </br>
+                    <input type="radio" name="role" value="other">other
+            </tr>
+            <tr>
+                <td> gender</td>
+                <td><input type="radio" name="gender" value="Male">Male </br>
+                    <input type="radio" name="gender" value="Female">Female </br>
+                    <input type="radio" name="gender" value="Other">Other 
+            </tr>
+            <tr>
+                <td> country </td>
+                <td><input type="text" placeholder="Enter country" name="country"></td>
+            </tr>
+            <tr>
+                <td> disability</td>
+                <td><input type="radio" name="disability" value=1>Yes </br>
+                    <input type="radio" name="disability" value=0>No
+            </tr>
+            <tr>
+                <td> <input type="submit" value="Insert"/> </td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: red;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

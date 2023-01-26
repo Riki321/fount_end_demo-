@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <style>  
+        body  {  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:url("https://cdn.wallpapersafari.com/80/65/kNA35n.jpg");  
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat:repeat;
+            background-size: cover;
+            position: relative;
+        }  
+        td {
+            text-align: center;
+        }
+    </style>  
+    <title> Hackathon Management System </title>
+</head>
+
+<body>
+    <left>
+        <a href="{% url 'HomePage' %}">
+            <button>HomePage</button>
+        </a>
+    </left>
+    
+    <left>
+        <a href="{% url 'insert_org' %}">
+            <button>Insert Organization</button>
+        </a>
+    </left>
+
+    <center>
+        <h1 style="color:white;"> Show Organization Records </h1>
+    </hr>
+    <form method="POST" action="sort_org">
+        {% csrf_token %}
+        <label for="Sort"></label>
+            <select id="Sort" name="Sort">
+                <option value="org_id">org_id</option>
+                <option value="name">name</option>
+                <option value="address">address</option>
+                <option value="org_rating">org_rating</option>
+            </select>
+            <input type="submit" value="Sort"/>
+    </form>
+</hr>
+    <a href="{% url 'runQueryorg' %}">
+        <button style="margin:5px;">Run Query</button>
+    </a>
+    <a href="{% url 'run_query' %}">
+        <button style="margin:5px;">Run Custom Query</button>
+    </a>
+</hr>
+        <table border="1" bgcolor="lightblue">
+            <tr>
+                <th> org_id</th>
+                <th> name</th>
+                <th> address </th>
+                <th> org_rating</th>
+            </tr>
+            {% for result in show_org %}
+            <tr>
+                <td> {{result.org_id}}</td>
+                <td> {{result.name}} </td>
+                <td> {{result.address}} </td>
+                <td> {{result.org_rating}} </td>
+                <td><a href="edit_org/{{result.org_id}}">Edit✍</a></td>
+                <td><a href="del_org/{{result.org_id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>
